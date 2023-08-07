@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Source Sans Pro", sans-serif;
+    ;
+}
+
+body {
+    background-color: #fafafa;
+    width: 100%;
+    min-height: 100vh;
+    /* height: 100%; */
+    font-family: 18px;
+    
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.movies-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 2px solid red;
+}
+
+.movie-card {
+    width: 90%;
+    max-width: 120px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: auto;
+    margin: 0.5rem;
+}

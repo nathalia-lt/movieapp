@@ -1,17 +1,14 @@
 import './homepage.css'
 
 
-
 //no retorno dessa funcao eu NAO vou colocar data-set e sim um fetch quando clicar no card. Dessa forma eu envio todas as informacoes que eu tenho no meu API para essa nova pagina.
-const movieCardTemplate = function (item) {
-    const date = new Date(item.release_date)
-    const year = date.getFullYear()
 
+
+const movieCardTemplate = function (item) {
     return `
-<a href="/movie/${item.id}" id="movie-item-container" class="movie-item-container" data-id="${item.id}" data-title="${item.title}" data-img="${item.poster_path}" data-synopse="${item.overview}" data-year="${year}" data-language="${item.original_language}">
+<a href="/movie/${item.id}" id="movie-item-container" class="movie-item-container">
     <div id="movie-card" class="movie-card">
     <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt='${item.title}' />
-    <p id="year" class="year">${year}</p>
     <p id="title" class="title">${item.title} title</p>
     <p id="rating" class="rating">${item.vote_average}</p>
     </div>

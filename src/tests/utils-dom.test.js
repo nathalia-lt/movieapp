@@ -52,9 +52,7 @@ describe('createElement Function', () => {
         test('Case props is not an object', () => {
                 const tagName = 'p'
                 const props = 'string'
-                expect(() => createElement(tagName, props)).toThrow(new Error('props must be an object'))
-    
+                expect(() => createElement(tagName, props)).toThrow(new Error('props must be an object'))    
         })
-    })
-    
+    })    
 })

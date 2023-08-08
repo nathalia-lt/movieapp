@@ -8,20 +8,22 @@ import footer from './partials/footer'
 const url = window.location.pathname
 console.log(url)
 
+
+
 //para eu usar o meu header em todas as paginas eu coloco aqui, no meu scope global
 //estou aqui desenhando o meu HTML
 const app = document.getElementById('app')
+
 //aqui estou adicionando (desenhando)o meu header no meu index.html
 const el_html_header = header.render() // HTMLElement -> Objeto
-
+//hamburguer esta dentro do header entao ja deve renderizar junto
 //aqui estou tentando display meu hamburguer na tela
 
-const el_html_hamburguer = header.hamburguer() //aqui estou colocando o meu html elemento
-
-//UHUUUUU apareceu
-app.appendChild(el_html_hamburguer)
 
 app.appendChild(el_html_header)
+
+
+
 
 if (url === '/') {
     //minha entrada pro js.
@@ -79,16 +81,51 @@ if (url === '/') {
     //vai me devolver um html sring
 
     const el_html = homepage.render(movies)
-    
+
     app.appendChild(el_html)
     //e um objeto e nao string por isso append
-} else {
-    const el_html = `<h1>404</h1>` // Template Literal -> string
+}
+else if (url==='/about') {
+    // renderizar a página about
+}
+
+else if (url==='/contact') {
+    // renderizar a página contact
+}
+
+else if (url==='/top-rated') {
     
-    app.innerHTML += el_html //+= adicionar ao final
+}
+
+else {
+    const parts = url.split('/')
+    console.log(parts)
+
+    if (parts[1] === 'movie') {
+        const movieId = parts[2]
+        console.log(movieId)
+
+        //fazer o fetch para pegar as informações do filme daquele id
+        //
+
+        
+        //const el_html = moviepage.render(movie)
+
+        //app.appendChild(el_html)
+
+    } else {
+        const el_html = `<h1 style='margin-top: 5rem'>404</h1>` // Template Literal -> string
+
+        app.insertAdjacentHTML('beforeend', el_html)
+    }
+
+    
 }
 
 //adiciono o footer no final
-app.appendChild(el_html_footer)
+
+// const el_html_footer = footer.render()
+// console.log('aqui esta o footer', el_html_footer)
+// app.appendChild(el_html_footer)
 
 

@@ -1,34 +1,32 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body{
-    background-color: #eeede8;
+/* pq todo o meu header nao ficou fixo? so o meu hamburguer */
+/* huuuum, achei que meu hmburgues estava dentro do meu header. pelo visto nao esta */
+/* acho que tenho que adicionar o meu hamburguer dentro do meu header la no no main.js, pronto adicionei mas nao ta displaying do jeito que achei que iria  */
+.header-container {
     width: 100%;
-    min-height: 100vh;
-    font-family: "Source Sans Pro",sans-serif;;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* o padding vertical e metade do horizontal  */
+    padding: 1rem 2rem;
+    border: 2px solid black;
+    background-color: lightblue;
 }
-
-/* eu quero dar uma margin padding para o meu header */
-
-
-
 
 
 /* hamburguer menu style */
 
-.hamburgerBtn{
+.hamburgerBtn {
     width: 2rem;
     height: auto;
     /* position fixex, so scrolling wont affect it */
-    position: fixed;
+    /* position: fixed; */
     /* z-index to make sure it stays above avery other element */
-    z-index: 100;
+    /* z-index: 100; */
     /* top and right, to add it to the top right corner */
-    top: 1rem;
-    left: 1rem;
+    /* top: 1rem; */
+    /* left: 1rem; */
     padding: 4px;
     border: black solid 1px;
     background: white;
@@ -39,7 +37,8 @@ body{
 .closeIcon {
     display: none;
 }
-.closeIcon:hover{
+
+.closeIcon:hover {
     /* aumenta ou diminuiu */
     transform: scale(1.5);
 }
@@ -75,3 +74,107 @@ body{
 
 
 
+/* expandable search bar */
+
+.search-container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 60px;
+    transition: 0.5s;
+    box-shadow: 0 0 0 5px pink;
+    overflow: hidden;
+}
+
+.search-container.active {
+    width: 360px;
+}
+
+.search-container .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.search-container .icon::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 3px solid black;
+    border-radius: 50%;
+    transform: translate(-4px, -4px);
+}
+
+
+.search-container .icon::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: pink;
+    transform: translate(6px, 6px) rotate(315deg);
+}
+
+.search-container .input {
+    position: relative;
+    width: 300px;
+    height: 60px;
+    left: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container .input input {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 10px 0;
+}
+
+.clear {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    right: 15px;
+    background: yellow;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear::before {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 15px;
+    background: #999;
+    transform: rotate(45deg);
+}
+
+.clear::after {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 15px;
+    background: #999;
+    transform: rotate(315deg);
+}

@@ -17,9 +17,10 @@ function renderHeader() {
 function hamburgerTemplate() {
     return `
     <ul class="menu">
-        <li><a class="menuItem" href="#">Home</a></li>
-        <li><a class="menuItem" href="#">Profile</a></li>
-        <li><a class="menuItem" href="#">About</a></li>
+    <h4>Discover</h4>
+        <li><a class="menuItem" href="#">Popular</a></li>
+        <li><a class="menuItem" href="#">Top-rated</a></li>
+        <li><a class="menuItem" href="#">Upcoming</a></li>
         <li><a class="menuItem" href="#">Contacts</a></li>
     </ul>
     <!-- Hamburger buttons -->
@@ -49,16 +50,14 @@ function renderHamburgerContainer() {
 }
 //o eventliestener no container hambugerconatainer que eu criei
 function addEventListenerToHamburguer(hamburgerContainer) {
-    console.log("LOADED HAMBURGER EVENT LISTENER")
+    // console.log("LOADED HAMBURGER EVENT LISTENER")
     const menu = hamburgerContainer.querySelector('.menu');
     const menuItems = hamburgerContainer.querySelectorAll('.menuItem');
     const hamburgerBtn = hamburgerContainer.querySelector('.hamburgerBtn');
     const menuIcon = hamburgerContainer.querySelector('.menuIcon');
     const closeIcon = hamburgerContainer.querySelector('.closeIcon')
 
-    console.log(hamburgerBtn)
     hamburgerBtn.addEventListener('click', function toggleMenu() {
-        console.log("CLICKED HAMBURGER BUTTON")
         if (menu.classList.contains('showMenu')) {
             menu.classList.remove('showMenu');
             closeIcon.style.display = 'none';

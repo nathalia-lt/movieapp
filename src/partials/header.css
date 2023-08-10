@@ -1,6 +1,4 @@
-/* pq todo o meu header nao ficou fixo? so o meu hamburguer */
-/* huuuum, achei que meu hmburgues estava dentro do meu header. pelo visto nao esta */
-/* acho que tenho que adicionar o meu hamburguer dentro do meu header la no no main.js, pronto adicionei mas nao ta displaying do jeito que achei que iria  */
+
 .header-container {
     width: 100%;
     display: flex;
@@ -28,7 +26,7 @@
     /* top: 1rem; */
     /* left: 1rem; */
     padding: 4px;
-    border: black solid 1px;
+    /* border: black solid 1px; */
     background: white;
     cursor: pointer;
 }
@@ -52,15 +50,14 @@
     /*  transfomr used to hide the menu by default */
     /* y- sobe desce, x- direito e esquerdo */
     /* menos e pra cima,estou subindo 100 */
-    transform: translateY(-100%);
+    transform: translateX(-100%);
     /* used to animate the change in translation value and create a slide up/down effect */
     transition: transform ease-in-out 0.3s;
     top: 0;
-    /* left: 0; */
-    right: 0;
+    left: 0;
     z-index: 99;
-    background: grey;
-    color: white;
+    background: #fafafa;
+    color: black;
     list-style: none;
     padding-top: 4rem;
 }
@@ -78,25 +75,27 @@
 
 .search-container {
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 25px;
     background-color: #fff;
     border-radius: 60px;
     transition: 0.5s;
-    box-shadow: 0 0 0 5px pink;
+    box-shadow: 0 0 0 3px #14b8a2;
     overflow: hidden;
 }
 
 .search-container.active {
-    width: 360px;
+    width: 200px;
 }
 
 .search-container .icon {
     position: absolute;
     top: 0;
     right: 0;
-    width: 30px;
-    height: 30px;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    width: 22px;
+    height: 25px;
     border-radius: 60px;
     display: flex;
     justify-content: center;
@@ -110,7 +109,7 @@
     position: absolute;
     width: 15px;
     height: 15px;
-    border: 3px solid black;
+    border: 2px solid  #14b8a2;
     border-radius: 50%;
     transform: translate(-4px, -4px);
 }
@@ -121,16 +120,16 @@
     position: absolute;
     width: 3px;
     height: 12px;
-    border: 1px solid black;
+    border: 1px solid  #14b8a2;
     border-radius: 50%;
-    background-color: pink;
+    background-color:  #14b8a2;
     transform: translate(6px, 6px) rotate(315deg);
 }
 
 .search-container .input {
     position: relative;
-    width: 300px;
-    height: 60px;
+    width: 47px;
+    height: 25px;
     left: 60px;
     justify-content: center;
     align-items: center;

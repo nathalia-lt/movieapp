@@ -21,13 +21,14 @@ function renderMoviesContainer(movies) {
     const moviesContainer = document.createElement('div')
     moviesContainer.id = 'movies-container'
     moviesContainer.classList.add('movies-container')
-
+    console.log(movies)
     //tenho que limpar o container antes de desenhar o container novamente
     moviesContainer.innerHTML = ''
-    movies.forEach(movie => {
-        moviesContainer.innerHTML += movieCardTemplate(movie)
-    })
-
+    
+    for (let i=0; i < 8; i++){
+        console.log(movies[i])
+        moviesContainer.innerHTML += movieCardTemplate(movies[i])
+    }
     return moviesContainer
     //Do I need a settimeout here? pq eu tenho que esperar todos os filmes renderizar, certo?
 }

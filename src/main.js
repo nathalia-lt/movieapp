@@ -1,13 +1,14 @@
 import './style.css'
-import homepage from './pages/homepage'
 import header from './partials/header'
+import homepage from './pages/homepage'
+import moviepage from './pages/moviepage'
 import footer from './partials/footer'
+import http from './utils/services/http'
 
 
 //isso url e um rotiador mais if 
 const url = window.location.pathname
-console.log(url)
-
+console.log('here is the url', url)
 
 
 //para eu usar o meu header em todas as paginas eu coloco aqui, no meu scope global
@@ -16,12 +17,10 @@ const app = document.getElementById('app')
 
 //aqui estou adicionando (desenhando)o meu header no meu index.html
 const el_html_header = header.render() // HTMLElement -> Objeto
-//hamburguer esta dentro do header entao ja deve renderizar junto
-//aqui estou tentando display meu hamburguer na tela
+//hamburguer esta dentro do header entao ja deve renderizar junto. eu renderizei o hamburguer na minha function header, ja que ele faz parte do header
 
 
 app.appendChild(el_html_header)
-
 
 
 
@@ -29,89 +28,59 @@ if (url === '/') {
     //minha entrada pro js.
     //aqui vai ser meu controler
 
-    async function authentication() {
-        const options = {
-            method: 'GET',
-            //headers sao as informacoes que eu mando para algum lugar
-            //combinado do que aceitavel na comunicacao
-            headers: {
-                accept: 'application/json',
-                Authorization: import.meta.env.VITE_API_TOKEN
-            }
-        };
 
-        //console.log(options)
-
-        const resp = fetch('https://api.themoviedb.org/3/authentication', options)
-            .then(response => response.json())
-            .then(response => {
-                return response.success
-            })
-            .catch(err => console.error(err));
-
-        return resp
-    }
-
-    const isAuthenticated = await authentication()
+    const isAuthenticated = await http.authentication()
 
 
-    async function getTopMovies() {
-        const options = {
-            method: 'GET',
-            //headers sao as informacoes que eu mando para algum lugar
-            //combinado do que aceitavel na comunicacao
-            headers: {
-                accept: 'application/json',
-                Authorization: import.meta.env.VITE_API_TOKEN
-            }
-        };
-
-        const result = fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
-            .then(response => response.json())
-            .then(response => { return response.results })
-            .catch(err => console.error(err));
-
-        return result
-    }
-
-
-
-    const movies = isAuthenticated ? await getTopMovies() : []
+    const movies = isAuthenticated ? await http.getTopMovies() : []
 
     //vai me devolver um html sring
 
-    const el_html = homepage.render(movies)
+    //eu so quero os resultados
+    const el_html = homepage.render(movies.results)
 
     app.appendChild(el_html)
     //e um objeto e nao string por isso append
 }
-else if (url==='/about') {
+else if (url === '/about') {
     // renderizar a página about
 }
-
-else if (url==='/contact') {
+// todos esses url === '/XXXXX, é como eu faco o roteamento das paginas, o caminho que sera chamado a minha aplicacao. em outros projetos podemos ter ajuda de biblioteca como express.js ou next.js
+else if (url === '/contact') {
     // renderizar a página contact
 }
 
-else if (url==='/top-rated') {
-    
+else if (url === '/popular') {
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //       accept: 'application/json',
+    //       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMGY5ZmE2ZTFlMDdlZWU1YzgyZDg4M2MyN2E0ZmNiOSIsInN1YiI6IjY0Yzk1OGE1MDAxYmJkMDE0NTI1ZDRhNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zX-w7Hf-qQwiH11tVdQ6O2bmetWhbvJ_yIpyhCzl-Wg'
+    //     }
+    //   };
+
+    //   fetch('https://api.themoviedb.org/3/person/popular?language=en-US&page=1', options)
+    //     .then(response => response.json())
+    //     .then(response => { return response.results })
+    //     .catch(err => console.error(err));    
 }
 
 else {
     const parts = url.split('/')
-    console.log(parts)
 
     if (parts[1] === 'movie') {
-        const movieId = parts[2]
-        console.log(movieId)
-
+        //meu id era string e transformei em numero
+        const movieId = Number(parts[2])
         //fazer o fetch para pegar as informações do filme daquele id
-        //
+        //aqui eu chamo o meu fecth que fiz no http file
+        //tenho que fazer um await para nao dar promisse
+        const movie = await http.getMovie(movieId)
 
-        
-        //const el_html = moviepage.render(movie)
-
-        //app.appendChild(el_html)
+        const recommendations = await http.getMovieRecommendations(movieId)
+        console.log(recommendations)
+        const credits = await http.getMovieCredits(movieId)
+        const el_html = moviepage.render(movie, credits, recommendations.results)
+        app.appendChild(el_html)
 
     } else {
         const el_html = `<h1 style='margin-top: 5rem'>404</h1>` // Template Literal -> string
@@ -119,8 +88,9 @@ else {
         app.insertAdjacentHTML('beforeend', el_html)
     }
 
-    
+
 }
+
 
 //adiciono o footer no final
 

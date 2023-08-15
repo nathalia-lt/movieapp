@@ -1,4 +1,3 @@
-
 .header-container {
     width: 100%;
     display: flex;
@@ -88,22 +87,49 @@
     width: 200px;
 }
 
+/* nao e aconselhavel dar padding e margim para posicao absolute */
+.search-container .closeInput {
+    position: absolute;
+    top: 0;
+    right: 36px;
+    width: 22px;
+    height: 25px;
+    border-radius: 60px;
+    z-index: 1000;
+    cursor: pointer;
+    color: #14b8a2;
+}
+
+
 .search-container .icon {
     position: absolute;
     top: 0;
     right: 0;
-    padding-right: 0.5rem;
-    padding-top: 0.5rem;
-    width: 22px;
+    /* padding-right: 0.3rem; */
+    /* padding-top: 0.5rem; */
+    width: 32px;
     height: 25px;
-    border-radius: 60px;
-    display: flex;
+    border-radius: 50px;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     z-index: 1000;
     cursor: pointer;
+    background-color: #14b8a2;
+    color: #fff;
 }
 
+.search-container svg {
+    width: 25px;
+    height: 25px;
+}
+
+.search-container .icon:hover {
+    background-color: #14b8a2;
+    color: #fff;
+}
+
+/* 
 .search-container .icon::before {
     content: '';
     position: absolute;
@@ -124,29 +150,28 @@
     border-radius: 50%;
     background-color:  #14b8a2;
     transform: translate(6px, 6px) rotate(315deg);
-}
+} */
 
 .search-container .input {
     position: relative;
-    width: 47px;
+    width: 130px;
     height: 25px;
-    left: 60px;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .search-container .input input {
     position: absolute;
+    left: 10px;
     top: 0;
-    width: 100%;
+    width: 130px;
     height: 100%;
     border: none;
     outline: none;
     font-size: 1rem;
-    padding: 10px 0;
 }
 
-.clear {
+/* .clear {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -176,4 +201,4 @@
     height: 15px;
     background: #999;
     transform: rotate(315deg);
-}
+} */

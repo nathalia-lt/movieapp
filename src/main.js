@@ -42,27 +42,39 @@ if (url === '/') {
     app.appendChild(el_html)
     //e um objeto e nao string por isso append
 }
-else if (url === '/about') {
-    // renderizar a página about
-}
 // todos esses url === '/XXXXX, é como eu faco o roteamento das paginas, o caminho que sera chamado a minha aplicacao. em outros projetos podemos ter ajuda de biblioteca como express.js ou next.js
-else if (url === '/contact') {
-    // renderizar a página contact
+else if (url === '/upcoming') {
+    // renderizando a pagina upcoming
+    const upcoming = await http.getUpcomingMovies()
+    console.log('upcoming', upcoming)
+    const el_html = homepage.render(upcoming.results)
+    app.appendChild(el_html)
+
 }
 
 else if (url === '/popular') {
-    // const options = {
-    //     method: 'GET',
-    //     headers: {
-    //       accept: 'application/json',
-    //       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMGY5ZmE2ZTFlMDdlZWU1YzgyZDg4M2MyN2E0ZmNiOSIsInN1YiI6IjY0Yzk1OGE1MDAxYmJkMDE0NTI1ZDRhNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zX-w7Hf-qQwiH11tVdQ6O2bmetWhbvJ_yIpyhCzl-Wg'
-    //     }
-    //   };
-
-    //   fetch('https://api.themoviedb.org/3/person/popular?language=en-US&page=1', options)
-    //     .then(response => response.json())
-    //     .then(response => { return response.results })
-    //     .catch(err => console.error(err));    
+    const popular = await http.getPopularMovies()
+    //console.log('popular', popular)
+    const el_html = homepage.render(popular.results)
+    app.appendChild(el_html)
+}
+//busca estatica
+else if (url ==='/search') {
+    // /search?query=batman
+    console.log(window.location.search)
+    const params = new URLSearchParams(window.location.search)
+    console.log(params)
+    params.forEach((value, key) => {
+        console.log(key, value)
+    })
+    const query = params.get('query') || ''
+    const search = await http.search(query)
+    console.log(search)
+    if (search.results) {
+        const el_html = homepage.render(search.results)
+        app.appendChild(el_html)
+    }
+    
 }
 
 else {

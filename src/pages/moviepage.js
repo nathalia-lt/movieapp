@@ -1,11 +1,10 @@
 import './moviepage.css'
 import { dateStrToYear } from '../utils/parser'
 import { createElement } from '../utils/dom'
+import noImage from '../assets/noimage.png'
 
-//quando eu importo uma funcao de outro file, eu posso chamar ela direto dentro de outra funcao. nao preciso passar como parametro ou chamar global
 
-//quero me livrar da virgula e nao sei como, tentei replace e nao funcionou, nao sei se usei no lugar errado. tenho que fazer um loop? nao faz sentido
-function movieTemplate(movie, credits, recommendedMovies) {
+function movieTemplate(movie, credits, recommendedMovies,) {
     console.log('movie', movie.genres)
     let cast = ''
     for (let i = 0; i < 4; i++) {
@@ -16,18 +15,37 @@ function movieTemplate(movie, credits, recommendedMovies) {
         </figure>
         `
     }
-    // <p class="cast-character"> as ${credits.cast[i].character}</p>
-    // essa interacao foi simples, mas pelo fato de eu ter me dado conta que tinha que fazer, quase me fez chorar, nao chegaria a essa conclusao se fosse uns meses atras.
+
+
+    //to achando que nao e a melhor maneira de colocar as recomendacoes como figure. quando eu sei que e melhor usar lista?
+    //aqui tenho que colocar um a para linkar essa recomendacao a uma pagina.
+    //entao tiro como figura
+
+    //tive que fazer essa funcao pq algumas imagens nao apareciam
+    function figTemplate(poster_path, title) {
+        const image = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : noImage
+
+        return `<img  src="${image}" alt='${title}' />`
+    }
+
 
     let recommended = ''
     for (let i= 0; i < 10; i++){
         recommended += `
+        <a href="/movie/${recommendedMovies[i].id}">
         <figure class="recommended-cart">
-        <img  src="https://image.tmdb.org/t/p/w500${recommendedMovies[i].poster_path}" alt='${recommendedMovies[i].title}' />
-        <figcaption id="title" class="title">${recommendedMovies[i].original_title}</figcaption>
-        </figure>
+            ${figTemplate(recommendedMovies[i].poster_path, recommendedMovies[i].title)}
+            <figcaption id="title" class="title">${recommendedMovies[i].original_title}</figcaption>
+        </figure> 
+        </a>
         `
     }
+
+    let genres = ''
+    for (let i = 0; i < movie.genres.length; i++) {
+        genres +=`<p class="genre">${movie.genres[i].name}</p>`
+    }
+
 
     const year = dateStrToYear(movie.release_date)
     return `
@@ -41,7 +59,7 @@ function movieTemplate(movie, credits, recommendedMovies) {
         <p id="runtime" class="runtime"> <i class="fa fa-clock-o" aria-hidden="true"></i> ${movie.runtime} min</p>    
     </div>
     <div class="genre-container">
-        ${movie.genres && movie.genres.map(genre => `<p class="genre">${genre.name}</p>`)}
+        ${genres}
     </div>    
         <p id="synopses" class="synopses">${movie.overview}</p>
         <h3>Cast:</h3>

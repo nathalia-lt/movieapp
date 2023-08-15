@@ -41,26 +41,42 @@ async function getMovieCredits(movieId) {
 }
 
 
-//aqui eu nao precisaria de movieId, ja que 'e uma nova requisicao que nao precisa dela. preciso de page, caso eu queira mais paginas
+//tudo que vem depois de ? e query parametro e separara elees pelo &.
 async function getPopularMovies(page=1) {
     //if (!isValidId(movieId)) throw new Error('movieId is required')
-    const popularMovies = await get('https://api.themoviedb.org/3/person/popular?language=en-US&page=${page}')
+    const popularMovies = await get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`)
     return popularMovies
 }
 
+
+
 //preciso de parametros aqui? o que seria?
-async function getUpcomingMovies() {
+async function getUpcomingMovies(page=1) {
     //if (!isValidId(movieId)) throw new Error('movieId is required')
-    const upcomingMovies = await get('https://api.themoviedb.org/3/movie/upcoming')
+    const upcomingMovies = await get(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`)
     return upcomingMovies
 }
 
 
 async function getMovieRecommendations(movieId) {
     if (!isValidId(movieId)) throw new Error('movieId is required')
-    const recommendations = await get(`https://api.themoviedb.org/3/movie/${movieId}/recommendations`)
+    const recommendations = await get(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US`)
     return recommendations
 }
+
+
+
+//query e o que eu to buscando
+async function search(query) {
+    const searchMovie = await get(`
+    https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US`)
+    return searchMovie
+}
+
+
+
+
+
 
 
 function isValidId(id) {
@@ -99,7 +115,8 @@ const http = {
     getMovieCredits,
     getPopularMovies,
     getUpcomingMovies,
-    getMovieRecommendations
+    getMovieRecommendations,
+    search
 }
 
 export default http

@@ -10,7 +10,7 @@ const movieCardTemplate = function (item) {
     <div id="movie-card" class="movie-card">
     <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt='${item.title}' />
     <p id="title" class="title">${item.title} title</p>
-    <p id="rating" class="rating">${item.vote_average}</p>
+    <p id="rating" class="rating">Rating: ${item.vote_average}</p>
     </div>
 </a>
 `
@@ -26,7 +26,7 @@ function renderMoviesContainer(movies) {
     moviesContainer.innerHTML = ''
     
     for (let i=0; i < 8; i++){
-        console.log(movies[i])
+        // console.log(movies[i])
         moviesContainer.innerHTML += movieCardTemplate(movies[i])
     }
     return moviesContainer

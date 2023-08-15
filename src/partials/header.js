@@ -1,5 +1,6 @@
 import { createElement } from '../utils/dom'
 import './header.css'
+import http from '../utils/services/http'
 
 function renderHeader() {
     //vou criar um elemento html para armazenar o meu header
@@ -18,10 +19,9 @@ function hamburgerTemplate() {
     return `
     <ul class="menu">
     <h4>Discover</h4>
-        <li><a class="menuItem" href="#">Popular</a></li>
-        <li><a class="menuItem" href="#">Top-rated</a></li>
-        <li><a class="menuItem" href="#">Upcoming</a></li>
-        <li><a class="menuItem" href="#">Contacts</a></li>
+        <li><a class="menuItem" href="/">Home</a></li>
+        <li><a class="menuItem" href="/popular">Popular</a></li>
+        <li><a class="menuItem" href="/upcoming">Upcoming</a></li>
     </ul>
     <!-- Hamburger buttons -->
     <button class="hamburgerBtn">
@@ -77,9 +77,16 @@ function addEventListenerToHamburguer(hamburgerContainer) {
 //tentando um expandable search bar
 
 function searchTemplate() {
+
+
     return `
     <div class="input">
         <input type="text" placeholder="search" id="my-search"/>
+    </div>
+    <div class="closeInput">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
     </div>
     <div class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -103,16 +110,64 @@ function renderSearchBar() {
 }
 
 
+// o botão de lupa abre o input se o input estiver fechado
+// se o input estiver aberto, o botão de lupa serve como botão de busca (abre um url /search?query=${texto_digitado_no_input})
+// se o texto_digitado_no_input for vazio, não faz nada (ou dá um aviso para o usuário de que é necessário digitar algo)
+// quando o input estiver aberto, apareça o botão de x para fechar o input
+
+// function searchMovie(){
+//     const magnifying = document.querySelector('icon');
+//     const input = document.querySelector('input')
+//     if (magnifying === ){
+//         magnifying.style.display = block
+
+//     }
+// }
+
+
 
 /**
  * 
  * @param {HTMLDivElement} searchBar
  */
+
+let inputIsOpen = false;
+
 function addEventListenerToSearchBar(searchBar) {
     const icon = searchBar.querySelector('.icon');
+    const closeInput = searchBar.querySelector('.closeInput');
+    const input = searchBar.querySelector('.input input')
+
     icon.addEventListener('click', () => {
-        searchBar.classList.toggle('active')
+        if (!inputIsOpen) {
+            searchBar.classList.add('active')
+            closeInput.style.display = 'block'
+            inputIsOpen = true
+        } else {
+            const query = input.value
+            console.log(query)
+            // alterar o endereço da página para /search?query=${query}
+        }
     })
+
+    input.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+            const query = input.value
+            console.log(query)
+            // alterar o endereço da página para /search?query=${query}
+        }
+    })
+
+
+    closeInput.addEventListener('click', () => {
+        if (inputIsOpen) {
+            searchBar.classList.remove('active')
+            closeInput.style.display = 'hidden'
+            inputIsOpen = false
+        }
+    })
+
+
 }
 //para limpar meu search bar seria assim, tenho que fazer um novo eventlistener?
 //const input = document.getElementById('my-search').value = ''

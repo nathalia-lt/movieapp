@@ -1,7 +1,7 @@
 
-
 //aqui vou colocar minhas requisicoes http
 //todos os meus fetchs vem aqui
+
 const options = {
     method: 'GET',
     //headers sao as informacoes que eu mando para algum lugar
@@ -40,12 +40,27 @@ async function getMovieCredits(movieId) {
     return credits
 }
 
+
+//aqui eu nao precisaria de movieId, ja que 'e uma nova requisicao que nao precisa dela. preciso de page, caso eu queira mais paginas
+async function getPopularMovies(page=1) {
+    //if (!isValidId(movieId)) throw new Error('movieId is required')
+    const popularMovies = await get('https://api.themoviedb.org/3/person/popular?language=en-US&page=${page}')
+    return popularMovies
+}
+
+//preciso de parametros aqui? o que seria?
+async function getUpcomingMovies() {
+    //if (!isValidId(movieId)) throw new Error('movieId is required')
+    const upcomingMovies = await get('https://api.themoviedb.org/3/movie/upcoming')
+    return upcomingMovies
+}
+
+
 async function getMovieRecommendations(movieId) {
     if (!isValidId(movieId)) throw new Error('movieId is required')
     const recommendations = await get(`https://api.themoviedb.org/3/movie/${movieId}/recommendations`)
     return recommendations
 }
-
 
 
 function isValidId(id) {
@@ -82,6 +97,8 @@ const http = {
     getTopMovies,
     getMovie,
     getMovieCredits,
+    getPopularMovies,
+    getUpcomingMovies,
     getMovieRecommendations
 }
 

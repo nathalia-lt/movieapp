@@ -33,7 +33,7 @@ if (url === '/') {
 
 
     const movies = isAuthenticated ? await http.getTopMovies() : []
-
+    
     //vai me devolver um html sring
 
     //eu so quero os resultados
@@ -77,9 +77,10 @@ else {
         const movie = await http.getMovie(movieId)
 
         const recommendations = await http.getMovieRecommendations(movieId)
-        console.log(recommendations)
+        const recommendedMovies = recommendations.results
+        console.log(recommendedMovies)
         const credits = await http.getMovieCredits(movieId)
-        const el_html = moviepage.render(movie, credits, recommendations.results)
+        const el_html = moviepage.render(movie, credits, recommendedMovies)
         app.appendChild(el_html)
 
     } else {

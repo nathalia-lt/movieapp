@@ -13,8 +13,8 @@ import { createElement } from '../utils/dom'
 
 function pageTitleTemplate(title) {
     return `
-    <h1>${title}</h1>
-    <h2>Movies<h2>
+    <h2>${title}</h2>
+    <h3>Movies<h3>
     `
 }
 
@@ -44,7 +44,7 @@ const movieCardTemplate = function (item) {
 
 function renderMoviesContainer(movies) {
     //eu criei um elemento html (um obj para o js) e nao uma string. por isso la no main e append e nao innerHTML
-    const moviesContainer = createElement('div',{ id: 'movies-container', class: 'movies-container' })
+    const moviesContainer = createElement('div', { id: 'movies-container', class: 'movies-container' })
     console.log(movies)
     //tenho que limpar o container antes de desenhar o container novamente
     moviesContainer.innerHTML = ''
@@ -61,7 +61,7 @@ function renderMoviesContainer(movies) {
 const page = {
     //tem que devolver um elemento do dom
     render: (movies, title) => {
-        const el = createElement('div', {}, [renderPageTitle(title), renderMoviesContainer(movies) ])
+        const el = createElement('div', {}, [renderPageTitle(title), renderMoviesContainer(movies)])
         return el
     },
 

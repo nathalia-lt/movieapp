@@ -10,6 +10,7 @@
     padding: 1rem 2rem;
     border-bottom: 0.5px solid lightgray;
     background-color: transparent;
+    /* frosted glass effect */
     backdrop-filter: blur(1px);
     box-shadow: 0 5px 11px 0px #e7e5dd75;
 }
@@ -52,7 +53,7 @@
 .menu {
     text-align: left;
     width: 45%;
-    max-width: 200px;
+    max-width: 150px;
     position: fixed;
     padding-left: 1rem;
     padding-bottom: 1rem;
@@ -144,30 +145,19 @@
     color: #fafafa;
 }
 
-/* 
-.search-container .icon::before {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border: 2px solid  #14b8a2;
-    border-radius: 50%;
-    transform: translate(-4px, -4px);
-}
-
 
 .search-container .icon::after {
     content: '';
     position: absolute;
     width: 3px;
     height: 12px;
-    border: 1px solid  #14b8a2;
+    border: 1px solid #14b8a2;
     border-radius: 50%;
-    background-color:  #14b8a2;
+    background-color: #14b8a2;
     transform: translate(6px, 6px) rotate(315deg);
-} */
+}
 
-.search-container .input {
+*/ .search-container .input {
     position: relative;
     width: 130px;
     height: 25px;

@@ -76,9 +76,6 @@ async function search(query) {
 
 
 
-
-
-
 function isValidId(id) {
     if (typeof id === 'number' && id >= 0) {
         return true

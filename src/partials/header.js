@@ -1,6 +1,7 @@
 import { createElement } from '../utils/dom'
 import './header.css'
 import http from '../utils/services/http'
+import homepage from '../pages/page'
 
 function renderHeader() {
     //vou criar um elemento html para armazenar o meu header
@@ -114,50 +115,48 @@ function renderSearchBar() {
 // se o input estiver aberto, o botão de lupa serve como botão de busca (abre um url /search?query=${texto_digitado_no_input})
 // se o texto_digitado_no_input for vazio, não faz nada (ou dá um aviso para o usuário de que é necessário digitar algo)
 // quando o input estiver aberto, apareça o botão de x para fechar o input
-
-// function searchMovie(){
-//     const magnifying = document.querySelector('icon');
-//     const input = document.querySelector('input')
-//     if (magnifying === ){
-//         magnifying.style.display = block
-
-//     }
-// }
-
-
-
 /**
  * 
  * @param {HTMLDivElement} searchBar
  */
 
-let inputIsOpen = false;
 
+//const url = window.location.pathname
+//window, tem o browser e o dom dentro dele
+
+let inputIsOpen = false;
 function addEventListenerToSearchBar(searchBar) {
     const icon = searchBar.querySelector('.icon');
     const closeInput = searchBar.querySelector('.closeInput');
     const input = searchBar.querySelector('.input input')
 
-    icon.addEventListener('click', () => {
+    function changeUrl() {
+        const query = input.value
+            console.log(query)  
+            //aqui eu estou determinando uma nova url para minha pagina       
+            // alterar o endereço da página para /search?query=${query}
+            window.location.assign(`/search?query=${query}`)
+    }
+
+
+    icon.addEventListener('click',() => {
         if (!inputIsOpen) {
             searchBar.classList.add('active')
             closeInput.style.display = 'block'
             inputIsOpen = true
         } else {
-            const query = input.value
-            console.log(query)
-            // alterar o endereço da página para /search?query=${query}
+            changeUrl()
+            
         }
     })
+
 
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
-            const query = input.value
-            console.log(query)
-            // alterar o endereço da página para /search?query=${query}
+            changeUrl()
         }
     })
-
+    
 
     closeInput.addEventListener('click', () => {
         if (inputIsOpen) {

@@ -1,0 +1,46 @@
+.wrapper {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.title-rec {
+    color: rgba(0, 0, 0, 0.54);
+    padding-top: 0.5rem;
+}
+
+.rating {
+    color: rgba(0, 0, 0, 0.54);
+    padding-bottom: 0.2rem;
+}
+
+.movie-item-container {
+    display: flex;
+}
+
+.movies-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #fafafa;
+}
+
+.title-container {
+    margin-top: 5rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.movie-card {
+    width: 90%;
+    max-width: 140px;
+    display: flex;
+    flex-direction: column;
+    border: 0.4px solid lightgray;
+    border-radius: 5px;
+    height: auto;
+    margin: 0.5rem;
+}

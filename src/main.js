@@ -1,6 +1,6 @@
 import './style.css'
 import header from './partials/header'
-import homepage from './pages/homepage'
+import page from './pages/page'
 import moviepage from './pages/moviepage'
 import footer from './partials/footer'
 import http from './utils/services/http'
@@ -37,7 +37,8 @@ if (url === '/') {
     //vai me devolver um html sring
 
     //eu so quero os resultados
-    const el_html = homepage.render(movies.results)
+    const el_html = page.render(movies.results, "TOP")
+    console.log('resultados', el_html)
 
     app.appendChild(el_html)
     //e um objeto e nao string por isso append
@@ -47,7 +48,7 @@ else if (url === '/upcoming') {
     // renderizando a pagina upcoming
     const upcoming = await http.getUpcomingMovies()
     console.log('upcoming', upcoming)
-    const el_html = homepage.render(upcoming.results)
+    const el_html = page.render(upcoming.results, "UPCOMING")
     app.appendChild(el_html)
 
 }
@@ -55,15 +56,16 @@ else if (url === '/upcoming') {
 else if (url === '/popular') {
     const popular = await http.getPopularMovies()
     //console.log('popular', popular)
-    const el_html = homepage.render(popular.results)
+    const el_html = page.render(popular.results, "POPULAR")
     app.appendChild(el_html)
 }
 //busca estatica
 else if (url ==='/search') {
     // /search?query=batman
     console.log(window.location.search)
+    //params it works by passing the query string of URL and providing a way to access the values
     const params = new URLSearchParams(window.location.search)
-    console.log(params)
+    console.log('params', params)
     params.forEach((value, key) => {
         console.log(key, value)
     })
@@ -71,7 +73,7 @@ else if (url ==='/search') {
     const search = await http.search(query)
     console.log(search)
     if (search.results) {
-        const el_html = homepage.render(search.results)
+        const el_html = page.render(search.results, "RESULTS")
         app.appendChild(el_html)
     }
     

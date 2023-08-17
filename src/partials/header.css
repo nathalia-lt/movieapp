@@ -2,13 +2,16 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     position: fixed;
     top: 0;
     left: 0;
     /* o padding vertical e metade do horizontal  */
     padding: 1rem 2rem;
-    border: 2px solid black;
-    background-color: lightblue;
+    border-bottom: 0.5px solid lightgray;
+    background-color: transparent;
+    backdrop-filter: blur(1px);
+    box-shadow: 0 5px 11px 0px #e7e5dd75;
 }
 
 
@@ -24,15 +27,21 @@
     /* top and right, to add it to the top right corner */
     /* top: 1rem; */
     /* left: 1rem; */
-    padding: 4px;
+    padding: 1px;
+    color: #F96167;
     /* border: black solid 1px; */
-    background: white;
+    background: transparent;
     cursor: pointer;
 }
 
 /* To hide the close icon by default, add display: none; to the closeIcon class */
 .closeIcon {
     display: none;
+    z-index: 1000;
+    position: absolute;
+    width: 20px;
+    left: 120px;
+    top: 10px;
 }
 
 .closeIcon:hover {
@@ -41,11 +50,15 @@
 }
 
 .menu {
-    text-align: center;
-    width: 40%;
+    text-align: left;
+    width: 45%;
+    max-width: 200px;
     position: fixed;
-    padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
     line-height: 2rem;
+    border-bottom: 2px solid black;
+    border: 1px solid black;
     /*  transfomr used to hide the menu by default */
     /* y- sobe desce, x- direito e esquerdo */
     /* menos e pra cima,estou subindo 100 */
@@ -58,7 +71,7 @@
     background: #fafafa;
     color: black;
     list-style: none;
-    padding-top: 4rem;
+    padding-top: 1rem;
 }
 
 /* This class below will be added and removed from the menu with Javascript to show and hide the menu. */
@@ -66,6 +79,13 @@
 .showMenu {
     /* By resetting translateY to 0, the menu will slide down and cover the whole screen */
     transform: translateY(0);
+}
+
+.menuItem {
+    color: black;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    cursor: pointer;
 }
 
 
@@ -79,7 +99,7 @@
     background-color: #fff;
     border-radius: 60px;
     transition: 0.5s;
-    box-shadow: 0 0 0 3px #14b8a2;
+    box-shadow: 0 0 0 3px #F96167;
     overflow: hidden;
 }
 
@@ -97,7 +117,7 @@
     border-radius: 60px;
     z-index: 1000;
     cursor: pointer;
-    color: #14b8a2;
+    color: #F96167;
 }
 
 
@@ -105,18 +125,13 @@
     position: absolute;
     top: 0;
     right: 0;
-    /* padding-right: 0.3rem; */
-    /* padding-top: 0.5rem; */
     width: 32px;
     height: 25px;
     border-radius: 50px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     z-index: 1000;
     cursor: pointer;
-    background-color: #14b8a2;
-    color: #fff;
+    background-color: #F96167;
+    color: #fafafa;
 }
 
 .search-container svg {
@@ -125,8 +140,8 @@
 }
 
 .search-container .icon:hover {
-    background-color: #14b8a2;
-    color: #fff;
+    background-color: #F96167;
+    color: #fafafa;
 }
 
 /* 

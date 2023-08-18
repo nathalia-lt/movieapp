@@ -4,17 +4,12 @@ import { createElement } from '../utils/dom'
 
 //no retorno dessa funcao eu NAO vou colocar data-set e sim um fetch quando clicar no card. Dessa forma eu envio todas as informacoes que eu tenho no meu API para essa nova pagina.
 
-
-//Oii
-//eu quero que mude o titulo da pagina sempre que eu mudo de pagina
-//ex: popular movies, upcoming movies, top-rated movies
-//   
-
-
+//quero colocar o titulo da pagina de acordo com a pagina clicada
+//vou renderizar o titulo la embaixo e passar como parametro no moviepage
 function pageTitleTemplate(title) {
     return `
     <h2>${title}</h2>
-    <h3>Movies<h3>
+    <p class="sub-title">Movies<p>
     `
 }
 

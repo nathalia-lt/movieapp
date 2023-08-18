@@ -26,7 +26,7 @@ function movieTemplate(movie, credits, recommendedMovies,) {
 
 
     let recommended = ''
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 16; i++) {
         recommended += `
         <a href="/movie/${recommendedMovies[i].id}">
         <figure class="recommended-cart">
@@ -38,7 +38,7 @@ function movieTemplate(movie, credits, recommendedMovies,) {
     }
 
     let genres = ''
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
         genres += `<p class="genre">${movie.genres[i].name}</p>`
     }
 

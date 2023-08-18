@@ -2,7 +2,6 @@ import './style.css'
 import header from './partials/header'
 import page from './pages/page'
 import moviepage from './pages/moviepage'
-import footer from './partials/footer'
 import http from './utils/services/http'
 
 
@@ -33,11 +32,11 @@ if (url === '/') {
 
 
     const movies = isAuthenticated ? await http.getTopMovies() : []
-    
+
     //vai me devolver um html sring
 
     //eu so quero os resultados
-    const el_html = page.render(movies.results, "TOP")
+    const el_html = page.render(movies.results, "TOP-RATED")
     console.log('resultados', el_html)
 
     app.appendChild(el_html)
@@ -60,7 +59,7 @@ else if (url === '/popular') {
     app.appendChild(el_html)
 }
 //busca estatica
-else if (url ==='/search') {
+else if (url === '/search') {
     // /search?query=batman
     console.log(window.location.search)
     //params it works by passing the query string of URL and providing a way to access the values
@@ -76,7 +75,7 @@ else if (url ==='/search') {
         const el_html = page.render(search.results, "RESULTS")
         app.appendChild(el_html)
     }
-    
+
 }
 
 else {

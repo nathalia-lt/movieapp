@@ -1,7 +1,5 @@
 import { createElement } from '../utils/dom'
 import './header.css'
-import http from '../utils/services/http'
-import homepage from '../pages/page'
 
 function renderHeader() {
     //vou criar um elemento html para armazenar o meu header
@@ -171,13 +169,10 @@ function addEventListenerToSearchBar(searchBar) {
 //para limpar meu search bar seria assim, tenho que fazer um novo eventlistener?
 //const input = document.getElementById('my-search').value = ''
 
-
-
 //tenho que mandar o meu header para o meu controler, para ele poder usar
 //vou mandar em forma de objeto
 
 const header = {
     render: renderHeader,
 }
-
 export default header

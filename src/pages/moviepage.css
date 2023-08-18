@@ -35,30 +35,33 @@ p {
     display: flex;
     justify-content: end;
     padding-right: 0.8rem;
-    /* align-content: center; */
-    /* align-items: center; */
 }
 
+.runtime {
+}
+
+.year{
+}
+
+.fa {
+    width: 90%;
+    max-width: 40px;
+    padding: 1rem;
+}
+
+.fa-clock-o {
+    width: 25px;
+}
+
+.fa .fa-film {
+    width: 25px;
+}
 
 .genre-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 1rem;
-
-}
-
-.fa {
-    width: 90%;
-    max-width: 35px;
-}
-
-.fa-clock-o {
-    max-width: 30px;
-}
-
-.fa .fa-film {
-    max-width: 30px;
 }
 
 .genre {
@@ -99,8 +102,6 @@ p {
     object-fit: cover;
     border-radius: 10%;
 }
-
-
 
 .cast-name {
     font-size: 0.7rem;
@@ -144,6 +145,11 @@ h3 {
 @media only screen and (min-width: 800px) {
     .cast-card {
         max-width: 24%;
+    }
+    .year-time-wrapper {
+        display: flex;
+        justify-content: center;
+        padding-right: 0.8rem;
     }
 
 }

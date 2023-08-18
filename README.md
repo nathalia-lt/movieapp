@@ -1,7 +1,7 @@
 **Movie app** 
 
-*A vanilla.js single page app (SPA) calling an API with mobile first design.*
-
+*A vanilla.js single page app (SPA) using The Movie Database (TMDb) API with mobile first design.*
+The Movie Database (TMDb) 
 
 # Demo:
 
